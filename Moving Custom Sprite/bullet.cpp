@@ -1,3 +1,5 @@
+//Aiden D'Antuono
+
 #include "bullet.h"
 bullet::bullet()
 {
@@ -25,7 +27,6 @@ int bullet::move_bullet (int arrowX, int arrowY, int width, int length, int heig
 {
 	y++;
 	al_draw_bitmap(bullet_bmp, x, y, 0);
-	//al_draw_filled_rectangle(x,y,x+5,y+5,al_map_rgb(255,255,0));//yellow color
 
 
 	if (x > arrowX && x < arrowX+width && y > arrowY && y < arrowY+length) {
@@ -39,6 +40,8 @@ int bullet::move_bullet (int arrowX, int arrowY, int width, int length, int heig
 
 
 } 
+
+//Creates a bitmap of the bullet
 void bullet::create_bullet_bitmap(ALLEGRO_DISPLAY *display) {
 	bullet_bmp = al_create_bitmap(16, 16);
 	if (!bullet_bmp) {

@@ -1,3 +1,5 @@
+//Aiden D'Antuono
+
 #include <allegro5\allegro.h>
 #include <allegro5\allegro_primitives.h>
 #include <allegro5/allegro_font.h>
@@ -62,9 +64,10 @@ int main(void)
 	arrow.drawArrow();
 	al_flip_display();
 	al_start_timer(timer);
+
 	while(!done)
 	{
-		
+		//Wait until 30 seconds have passed then stop the game
 		if (timePassed > 1800) {
 			al_stop_timer(timer);
 			al_draw_textf(fontBig, al_map_rgb(255, 0, 0), width / 2, height / 2 - 40, ALLEGRO_ALIGN_CENTER, "GAME OVER");
@@ -125,6 +128,8 @@ int main(void)
 		}
 		drawScore(width, height, score, timePassed, font);
 		al_flip_display();
+
+		//Add one to the number of frames that have occurred
 		timePassed++;
 	}
 	al_destroy_event_queue(event_queue);
@@ -134,6 +139,7 @@ int main(void)
 	return 0;
 }
 
+//Makes an area at the bottom of the screen that displays the current score and time remaining
 void drawScore(int width, int height, int score, int timePassed, ALLEGRO_FONT *font) {
 	al_draw_filled_rectangle(0, height, width, height + 40, al_map_rgb(255, 255, 255));
 	al_draw_textf(font, al_map_rgb(0, 0, 0), 10, height + 12, ALLEGRO_ALIGN_LEFT, "Score: %i", score);

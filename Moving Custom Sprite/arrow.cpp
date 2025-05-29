@@ -1,3 +1,5 @@
+//Aiden D'Antuono
+
 #include "arrow.h"
 arrowClass::arrowClass()
 {
@@ -17,6 +19,7 @@ arrowClass::~arrowClass()
 }
 void arrowClass::drawArrow()
 {
+    //Draw the bitmap in the direction the sprite is going
     switch (dir) {
         case 0:
             al_draw_bitmap(arrow_bmp, getX(), getY(), 0);
@@ -32,6 +35,8 @@ void arrowClass::drawArrow()
             break;
     }
 }
+
+//Create the arrow bitmap
 void arrowClass::create_arrow_bitmap(ALLEGRO_DISPLAY *display)
 {
 	arrow_bmp = al_create_bitmap(64, 64);   
