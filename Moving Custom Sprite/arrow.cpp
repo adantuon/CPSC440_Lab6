@@ -25,7 +25,7 @@ void arrowClass::drawArrow()
             al_draw_rotated_bitmap(arrow_bmp, 0, 64, getX(), getY(), ALLEGRO_PI/2, 0);
             break;
         case 2:
-            al_draw_bitmap(arrow_bmp, getX(), getY(), ALLEGRO_FLIP_VERTICAL);
+            al_draw_bitmap(arrow_bmp, getX(), getY(), ALLEGRO_FLIP_VERTICAL | ALLEGRO_FLIP_HORIZONTAL);
             break;
         case 3:
             al_draw_rotated_bitmap(arrow_bmp, 64, 0, getX(), getY(), 3 * ALLEGRO_PI / 2, 0);

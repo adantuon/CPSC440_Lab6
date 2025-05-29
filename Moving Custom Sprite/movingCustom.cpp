@@ -117,7 +117,7 @@ int main(void)
 			for(int i=0;i<10;i++)
 			{
 				mybullet[i].erase_bullet();
-				score+=mybullet[i].move_bullet(arrow.getX(),arrow.getY(),32,32,height);
+				score+=mybullet[i].move_bullet(arrow.getX(),arrow.getY(),64,64,height);
 			}
 		}
 		drawScore(width, height, score, timePassed, font);
