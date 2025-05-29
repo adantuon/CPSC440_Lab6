@@ -134,5 +134,5 @@ int main(void)
 void drawScore(int width, int height, int score, int timePassed, ALLEGRO_FONT *font) {
 	al_draw_filled_rectangle(0, height, width, height + 40, al_map_rgb(255, 255, 255));
 	al_draw_textf(font, al_map_rgb(0, 0, 0), 10, height + 12, ALLEGRO_ALIGN_LEFT, "Score: %i", score);
-	al_draw_textf(font, al_map_rgb(0, 0, 0), width - 10, height + 12, ALLEGRO_ALIGN_RIGHT, "Time: %i", timePassed / 60);
+	al_draw_textf(font, al_map_rgb(0, 0, 0), width - 10, height + 12, ALLEGRO_ALIGN_RIGHT, "Time: %i", 30 - (timePassed / 60));
 }
