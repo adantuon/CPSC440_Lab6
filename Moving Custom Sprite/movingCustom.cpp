@@ -1,9 +1,12 @@
 #include <allegro5\allegro.h>
 #include <allegro5\allegro_primitives.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
 #include "arrow.h";
 #include "bullet.h"
+#include <stdio.h>
 
-void drawScore(int width, int height, int score);
+void drawScore(int width, int height, int score, ALLEGRO_FONT *font);
 
 int main(void)
 {
@@ -35,8 +38,15 @@ int main(void)
 	//addon init
 	al_install_keyboard();
 	al_init_primitives_addon();
+	al_init_font_addon();
+	al_init_ttf_addon();
 	arrow.create_arrow_bitmap(display);
 
+
+	ALLEGRO_FONT *font = al_load_font("PressStart2P.ttf", 16, 0);
+	if (font == NULL) {
+		printf("font is NULL\n");
+	}
 
 	al_set_target_bitmap(al_get_backbuffer(display));
 	event_queue = al_create_event_queue();
@@ -102,7 +112,7 @@ int main(void)
 				score+=mybullet[i].move_bullet(arrow.getX(),arrow.getY(),32,32,height);
 			}
 		}
-		drawScore(width, height, score);
+		drawScore(width, height, score, font);
 		al_flip_display();
 	}
 	al_destroy_event_queue(event_queue);
@@ -112,6 +122,9 @@ int main(void)
 	return 0;
 }
 
-void drawScore(int width, int height, int score) {
+void drawScore(int width, int height, int score, ALLEGRO_FONT *font) {
 	al_draw_filled_rectangle(0, height, width, height + 40, al_map_rgb(255, 255, 255));
+	if (font != NULL) {
+		al_draw_textf(font, al_map_rgb(0, 0, 0), 0, height + 10, ALLEGRO_ALIGN_LEFT, "Score: %i", score);
+	}
 }
