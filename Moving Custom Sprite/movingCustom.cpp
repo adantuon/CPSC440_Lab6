@@ -6,7 +6,7 @@
 #include "bullet.h"
 #include <stdio.h>
 
-void drawScore(int width, int height, int score, ALLEGRO_FONT *font);
+void drawScore(int width, int height, int score, int timePassed, ALLEGRO_FONT *font);
 
 int main(void)
 {
@@ -15,6 +15,7 @@ int main(void)
 	int score=0;
 	bool redraw=true;
 	const int FPS = 60;
+	int timePassed = 0;
 
 	//variables
 	int width = 640;
@@ -44,6 +45,7 @@ int main(void)
 
 
 	ALLEGRO_FONT *font = al_load_font("PressStart2P.ttf", 16, 0);
+	ALLEGRO_FONT *fontBig = al_load_font("PressStart2P.ttf", 64, 0);
 	if (font == NULL) {
 		printf("font is NULL\n");
 	}
@@ -59,6 +61,12 @@ int main(void)
 	al_start_timer(timer);
 	while(!done)
 	{
+		
+		if (timePassed > 1800) {
+			al_stop_timer(timer);
+			al_draw_textf(fontBig, al_map_rgb(255, 0, 0), width / 2, height / 2 - 40, ALLEGRO_ALIGN_CENTER, "GAME OVER");
+			al_flip_display();
+		}
 		ALLEGRO_EVENT ev;
 		al_wait_for_event(event_queue, &ev);
 
@@ -112,8 +120,9 @@ int main(void)
 				score+=mybullet[i].move_bullet(arrow.getX(),arrow.getY(),32,32,height);
 			}
 		}
-		drawScore(width, height, score, font);
+		drawScore(width, height, score, timePassed, font);
 		al_flip_display();
+		timePassed++;
 	}
 	al_destroy_event_queue(event_queue);
 	al_destroy_timer(timer);
@@ -122,9 +131,8 @@ int main(void)
 	return 0;
 }
 
-void drawScore(int width, int height, int score, ALLEGRO_FONT *font) {
+void drawScore(int width, int height, int score, int timePassed, ALLEGRO_FONT *font) {
 	al_draw_filled_rectangle(0, height, width, height + 40, al_map_rgb(255, 255, 255));
-	if (font != NULL) {
-		al_draw_textf(font, al_map_rgb(0, 0, 0), 0, height + 10, ALLEGRO_ALIGN_LEFT, "Score: %i", score);
-	}
+	al_draw_textf(font, al_map_rgb(0, 0, 0), 10, height + 12, ALLEGRO_ALIGN_LEFT, "Score: %i", score);
+	al_draw_textf(font, al_map_rgb(0, 0, 0), width - 10, height + 12, ALLEGRO_ALIGN_RIGHT, "Time: %i", timePassed / 60);
 }
