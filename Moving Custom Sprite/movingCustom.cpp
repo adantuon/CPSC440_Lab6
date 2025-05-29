@@ -42,7 +42,10 @@ int main(void)
 	al_init_font_addon();
 	al_init_ttf_addon();
 	arrow.create_arrow_bitmap(display);
-
+	
+	for (int i = 0; i < 10; i++) {
+		mybullet[i].create_bullet_bitmap(display);
+	}
 
 	ALLEGRO_FONT *font = al_load_font("PressStart2P.ttf", 16, 0);
 	ALLEGRO_FONT *fontBig = al_load_font("PressStart2P.ttf", 64, 0);
