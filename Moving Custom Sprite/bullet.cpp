@@ -21,7 +21,7 @@ void bullet::fire()
 }
 void bullet::erase_bullet()
 {
-	al_draw_filled_rectangle(x,y,x+5,y+5,al_map_rgb(0,0,0)); //black color
+	al_draw_filled_rectangle(x,y,x+16,y+16,al_map_rgb(0,0,0)); //black color
 }
 int bullet::move_bullet (int arrowX, int arrowY, int width, int length, int height)
 {
