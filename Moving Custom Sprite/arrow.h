@@ -26,6 +26,6 @@ private:
 	int dir,speed;
 	int color;
 	int score;
-	ALLEGRO_BITMAP *arrow_bmp[4];
+	ALLEGRO_BITMAP *arrow_bmp;
 
 };
