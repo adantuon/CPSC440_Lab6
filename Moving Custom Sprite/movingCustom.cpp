@@ -6,7 +6,6 @@
 #include <allegro5/allegro_ttf.h>
 #include "arrow.h";
 #include "bullet.h"
-#include <stdio.h>
 
 void drawScore(int width, int height, int score, int timePassed, ALLEGRO_FONT *font);
 
@@ -51,8 +50,8 @@ int main(void)
 
 	ALLEGRO_FONT *font = al_load_font("PressStart2P.ttf", 16, 0);
 	ALLEGRO_FONT *fontBig = al_load_font("PressStart2P.ttf", 64, 0);
-	if (font == NULL) {
-		printf("font is NULL\n");
+	if (font == NULL || fontBig == NULL) {
+		return -1;
 	}
 
 	al_set_target_bitmap(al_get_backbuffer(display));
